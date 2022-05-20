@@ -10,8 +10,6 @@ resources:
       gitProvider: {{ .Values.myRepo.gitProvider }} # this will be replaced from values.yml
       # Repository path, including org name/repo name
       path: {{ .Values.myRepo.path }} # this will be replaced from values.yml
-      buildOn:
-         commit: true
       branches:
         # Specifies which branches will trigger dependent steps
         include: master
@@ -31,6 +29,7 @@ pipelines:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: Sample
+              trigger: true
         execution:
           onExecute:
             # Data from input resources is available as env variables in the step
